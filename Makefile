@@ -46,8 +46,7 @@ prep: clean $(TGTDIR)release/http
 	ldd $(OUTDIR)http |                                                                                                                                 \
 	  awk '/=>/ {print $$3}  /^[[:space:]]*\// {print $$1}' |                                                                                           \
 	  awk -F/ 'BEGIN {OFS=FS} {print "ln " $$0 " $(OUTDIR)" $$0 " 2>/dev/null || cp " $$0 " $(OUTDIR)" $$0; $$NF=""; print "mkdir -p $(OUTDIR)" $$0}' | \
-	  sort -r |                                                                                                                                         \
-	  uniq |                                                                                                                                            \
+	  sort -ru |                                                                                                                                        \
 	  sh -x
 
 clean:
